@@ -4,55 +4,69 @@ using UnityEngine;
 
 public class TrapManager : MonoBehaviour
 {
-
-    public GameObject[] traps;
-    public float trapActivationChance = 0.05f; //Current probability is 1 in 20.
+    public GameObject[] trapPrefabs;
+    public GameObject[] platforms;
 
     private Vector3[] initialPositions;
     private Quaternion[] initialRotations;
+    private GameObject[] currentTraps;
 
     private void Start()
     {
-        initialPositions = new Vector3[traps.Length];
-        initialRotations = new Quaternion[traps.Length];
+        //Initializes arrays based on the number of platforms
+        initialPositions = new Vector3[platforms.Length];
+        initialRotations = new Quaternion[platforms.Length];
+        currentTraps = new GameObject[platforms.Length];
 
-        for (int i = 0; i < traps.Length; i++)
+        for (int i=0; i < platforms.Length; i++)
         {
-            initialPositions[i] = traps[i].transform.position;
-            initialRotations[i] = traps[i].transform.rotation;
+            initialPositions[i] = platforms[i].transform.position;
+            initialRotations[i] = platforms[i].transform.rotation;
         }
+
+        AssignRandomTraps();
     }
 
-    public void ActivateRandomTrap()
+    public void AssignRandomTraps()
     {
-        foreach (GameObject trap in traps)
+        for (int i = 0; i < currentTraps.Length; i++)
         {
-            Trap trapComponent = trap.GetComponent<Trap>();
+            if (currentTraps[i] != null)
+            {
+                Destroy(currentTraps[i]);
+                currentTraps[i] = null;
+            }
+        }
+
+        for (int i = 0; i < platforms.Length; i++)
+        {
+            int randomIndex = Random.Range(0, trapPrefabs.Length);
+            GameObject selectedTrap = Instantiate(trapPrefabs[randomIndex], platforms[i].transform);
+            selectedTrap.transform.localPosition = Vector3.zero;
+            selectedTrap.transform.localRotation = Quaternion.identity;
+            currentTraps[i] = selectedTrap;
+
+            Trap trapComponent = selectedTrap.GetComponent<Trap>();
             if (trapComponent != null)
             {
-                if (Random.value <= trapActivationChance)
-                {
-                    trapComponent.ActivateTrap();
-                }
-                else
-                {
-                    trapComponent.DeactivateTrap();
-                }    
+                trapComponent.ActivateTrap();
+                Debug.Log($"Platform {platforms[i].name} has {trapPrefabs[randomIndex].name} applied and activated");
+            }
+            else
+            {
+                Debug.LogWarning($"Platform {platforms[i].name} has {trapPrefabs[randomIndex].name} applied but no Trap component found.");
             }
         }
     }
 
     public void ResetTraps()
     {
-        for (int i = 0; i < traps.Length; i++)
+        for (int i = 0; i < platforms.Length; i++)
         {
-            traps[i].transform.position = initialPositions[i];
-            traps[i].transform.rotation = initialRotations[i];
+            platforms[i].transform.position = initialPositions[i];
+            platforms[i].transform.rotation = initialRotations[i];
         }
-    }
 
-    public void SetTrapActivationChance(float chance)
-    {
-        trapActivationChance = Mathf.Clamp01(chance); //Ensures the chance is between 0 & 1.
+        AssignRandomTraps();
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LauncherTrap : Trap
 {
-
     public float launchForce = 10f;
+    public LayerMask playerLayer;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (IsPlayerLayer (collision.gameObject.layer))
         {
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             if (rb != null)
@@ -33,5 +33,10 @@ public class LauncherTrap : Trap
     public override void DeactivateTrap()
     {
         gameObject.SetActive(false);
+    }
+
+    private bool IsPlayerLayer(int layer)
+    {
+        return playerLayer == (playerLayer | (1 << layer));
     }
 }
