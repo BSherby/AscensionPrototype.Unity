@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 256185562}
   - component: {fileID: 256185561}
   - component: {fileID: 256185560}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trap Tile 2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 344969990}
   - component: {fileID: 344969989}
   - component: {fileID: 344969988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (8)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1127,7 +1127,7 @@ Transform:
   m_GameObject: {fileID: 344969986}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.509247, y: 7.993859, z: -4.255892}
+  m_LocalPosition: {x: 2.49, y: 7.993859, z: -4.247}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1325,7 +1325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &362775208
 Transform:
   m_ObjectHideFlags: 0
@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 552401985}
   - component: {fileID: 552401984}
   - component: {fileID: 552401983}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trap Tile 4
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1851,7 +1851,7 @@ GameObject:
   - component: {fileID: 665001542}
   - component: {fileID: 665001541}
   - component: {fileID: 665001540}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (11)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1867,7 +1867,7 @@ Transform:
   m_GameObject: {fileID: 665001538}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.040752888, y: 7.993859, z: -2.9858913}
+  m_LocalPosition: {x: -0.034, y: 7.993859, z: -2.983}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1956,9 +1956,10 @@ GameObject:
   - component: {fileID: 676670945}
   - component: {fileID: 676670944}
   - component: {fileID: 676670943}
-  m_Layer: 0
-  m_Name: 4 Tile (10)
-  m_TagString: Ground
+  - component: {fileID: 676670946}
+  m_Layer: 6
+  m_Name: 4 Tile Trigger
+  m_TagString: 4Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2049,6 +2050,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676670941}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &676670946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676670941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51229486119fa34095094ecb5e5741c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallDelay: 0.02
+  destroyDelay: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &691939003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,7 +2281,7 @@ GameObject:
   - component: {fileID: 800184328}
   - component: {fileID: 800184327}
   - component: {fileID: 800184326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trap Tile 1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2682,7 +2703,7 @@ GameObject:
   - component: {fileID: 1112281822}
   - component: {fileID: 1112281821}
   - component: {fileID: 1112281820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trap Tile 3
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2936,9 +2957,9 @@ GameObject:
   - component: {fileID: 1239060549}
   - component: {fileID: 1239060548}
   - component: {fileID: 1239060547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (18)
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2952,7 +2973,7 @@ Transform:
   m_GameObject: {fileID: 1239060545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08075285, y: 7.993859, z: -1.6858914}
+  m_LocalPosition: {x: -0.034, y: 7.993859, z: -1.72}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3041,7 +3062,7 @@ GameObject:
   - component: {fileID: 1304960093}
   - component: {fileID: 1304960092}
   - component: {fileID: 1304960091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (16)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3057,7 +3078,7 @@ Transform:
   m_GameObject: {fileID: 1304960089}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5592473, y: 7.993859, z: -1.6858914}
+  m_LocalPosition: {x: 2.49, y: 7.993859, z: -1.716}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3162,7 +3183,7 @@ Transform:
   m_GameObject: {fileID: 1306444600}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3207526, y: 7.993859, z: -2.9858913}
+  m_LocalPosition: {x: -1.346, y: 7.993859, z: -2.9858913}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3461,7 +3482,7 @@ GameObject:
   - component: {fileID: 1378433592}
   - component: {fileID: 1378433591}
   - component: {fileID: 1378433590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (7)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3477,7 +3498,7 @@ Transform:
   m_GameObject: {fileID: 1378433588}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2292471, y: 7.993859, z: -4.255892}
+  m_LocalPosition: {x: 1.227, y: 7.993859, z: -4.248}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3671,7 +3692,7 @@ GameObject:
   - component: {fileID: 1405690184}
   - component: {fileID: 1405690183}
   - component: {fileID: 1405690182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (5)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3687,7 +3708,7 @@ Transform:
   m_GameObject: {fileID: 1405690180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.040752888, y: 7.993859, z: -4.255892}
+  m_LocalPosition: {x: -0.036, y: 7.993859, z: -4.249}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4115,7 +4136,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4406,7 +4427,7 @@ GameObject:
   - component: {fileID: 1637294004}
   - component: {fileID: 1637294003}
   - component: {fileID: 1637294002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (15)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4422,7 +4443,7 @@ Transform:
   m_GameObject: {fileID: 1637294000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2292471, y: 7.993859, z: -1.6858914}
+  m_LocalPosition: {x: 1.2292471, y: 7.993859, z: -1.72}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4511,7 +4532,7 @@ GameObject:
   - component: {fileID: 1739254497}
   - component: {fileID: 1739254496}
   - component: {fileID: 1739254495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4 Tile (13)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4527,7 +4548,7 @@ Transform:
   m_GameObject: {fileID: 1739254493}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.499247, y: 7.993859, z: -2.9858913}
+  m_LocalPosition: {x: 2.493, y: 7.993859, z: -2.9858913}
   m_LocalScale: {x: 1.25, y: 0.02, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []

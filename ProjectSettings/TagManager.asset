@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - 4Tile
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
+  - 4Tile
+  - Platform
   - 
   - 
   - 
