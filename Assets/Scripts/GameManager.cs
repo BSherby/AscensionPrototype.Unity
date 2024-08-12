@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public Transform spawnPoint;
-    public TrapManager trapManager;
+    public TrapManagerExperimental trapManager;
     
     // Start is called before the first frame update
     void Start()

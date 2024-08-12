@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FourTile : Trap
 {
-    public float fallDelay = 0.5f;
-    public float destroyDelay = 35f;
+    public float fallDelay = 0.02f;
+    public float destroyDelay = 5f;
     public LayerMask playerLayer;
-    public LayerMask platformLayer;
+    public LayerMask fourTileSurroundLayer;
 
     private bool isFalling = false;
 
@@ -30,7 +30,7 @@ public class FourTile : Trap
 
         yield return FallAndDestroy(gameObject);
 
-        Collider[] surroundingPlatforms = Physics.OverlapSphere(transform.position, 2f, platformLayer);
+        Collider[] surroundingPlatforms = Physics.OverlapSphere(transform.position, 2f, fourTileSurroundLayer);
         foreach(Collider platform in surroundingPlatforms)
         {
             if (platform.gameObject != this.gameObject)
@@ -45,13 +45,10 @@ public class FourTile : Trap
         yield return new WaitForSeconds(fallDelay);
 
         Rigidbody rb = title.AddComponent<Rigidbody>();
-        if (rb == null)
-        {
-            rb = title.AddComponent<Rigidbody>();
-        }
         rb.isKinematic = false;
 
-        Destroy(title, destroyDelay);
+        yield return new WaitForSeconds(destroyDelay);
+        title.SetActive(false);
     }
 
     private bool IsPlayerLayer(int layer)
@@ -61,7 +58,7 @@ public class FourTile : Trap
 
     private void DetectSurroundingPlatforms()
     {
-        Collider[] surroundingPlatforms = Physics.OverlapSphere(transform.position, 2f, platformLayer);
+        Collider[] surroundingPlatforms = Physics.OverlapSphere(transform.position, 2f, fourTileSurroundLayer);
         Debug.Log($"Detected {surroundingPlatforms.Length} surrounding platforms.");
     }
 
