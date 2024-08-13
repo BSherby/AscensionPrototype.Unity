@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - 4Tile
+  - FourTileSurround
+  - FourTileTrigger
   layers:
   - Default
   - TransparentFX
