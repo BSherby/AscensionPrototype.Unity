@@ -38,7 +38,7 @@ public class FourTile : Trap
             }
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
     }
 
@@ -49,6 +49,7 @@ public class FourTile : Trap
 
     public override void ActivateTrap()
     {
+        isTriggered = false;
         gameObject.SetActive(true);
     }
 

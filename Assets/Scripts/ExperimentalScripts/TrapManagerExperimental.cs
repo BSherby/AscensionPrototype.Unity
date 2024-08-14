@@ -4,89 +4,66 @@ using UnityEngine;
 
 public class TrapManagerExperimental : MonoBehaviour
 {
-    public GameObject[] platforms;
+    public GameObject fourTileTriggerPrefab;
+    public GameObject fourTileSurroundPrefab;
+    public GameObject[] trapPrefabs;
 
-    private Vector3[] initialPositions;
-    private Quaternion[] initialRotations;
-    private GameObject[] currentTraps;
+    public Transform[] platformSpawnPoints;
+
+    private List<GameObject> currentTraps = new List<GameObject>();
 
     private void Start()
     {
-        initialPositions = new Vector3[platforms.Length];
-        initialRotations = new Quaternion[platforms.Length];
-        currentTraps = new GameObject[platforms.Length];
-
-        for (int i = 0; i < platforms.Length; i++)
-        {
-            initialPositions[i] = platforms[i].transform.position;
-            initialRotations[i] = platforms[i].transform.rotation;
-
-            Rigidbody rb = platforms[i].GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = true;
-            }
-        }
-
-        AssignTrapsToPlatforms();
+        Debug.Log("TrapManagerExperimental started. Initializing and assigning the traps.");
+        
+        InstantiateAndAssignTraps();
     }
 
     public void ResetTraps()
     {
-        GameObject[] surroundingPlatforms = GameObject.FindGameObjectsWithTag("FourTileSurround");
-        foreach(GameObject platform in surroundingPlatforms)
+        Debug.Log("Resetting the traps...");
+
+        foreach(var platform in currentTraps)
         {
+            Debug.Log($"Destroying platform or trap at position {platform.transform.position}");
             Destroy(platform);
         }
+        currentTraps.Clear();
 
-        StartCoroutine(ReinstantiateSurroundPlatforms());
+        InstantiateAndAssignTraps();
     }
 
-    private IEnumerator ReinstantiateSurroundPlatforms()
+    private void InstantiateAndAssignTraps()
     {
-        yield return new WaitForEndOfFrame();
-
-        for (int i = 0; i < platforms.Length; i++)
+        Debug.Log("Instantiating and assigning traps to platforms...");
+        
+        foreach (var spawnPoint in platformSpawnPoints)
         {
-            if (platforms[i].CompareTag("FourTileSurround"))
+            if (spawnPoint.CompareTag("FourTileTrigger"))
             {
-                GameObject platform = Instantiate(platforms[i], initialPositions[i], initialRotations[i]);
-                platforms[i] = platform;
-
-                Rigidbody rb = platform.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    rb.isKinematic = true;
-                }
+                GameObject platform = Instantiate(fourTileTriggerPrefab, spawnPoint.position, spawnPoint.rotation);
+                currentTraps.Add(platform);
+                Debug.Log($"FourTile platform instantiated at {spawnPoint.position}");
             }
-
-            if(platforms[i].CompareTag("FourTileTrigger") && !platforms[i].activeSelf)
+            else if (spawnPoint.CompareTag("FourTileSurround"))
             {
-                platforms[i].SetActive(true);
+                GameObject platform = Instantiate(fourTileSurroundPrefab, spawnPoint.position, spawnPoint.rotation);
+                currentTraps.Add(platform);
+                Debug.Log($"FourTileSurround platform instantiated at {spawnPoint.position}");
             }
-        }
-
-        AssignTrapsToPlatforms();
-    }
-
-    public void AssignTrapsToPlatforms()
-    {
-        for (int i = 0; i < platforms.Length; i++)
-        {
-            GameObject platform = platforms[i];
-
-            if (platform.CompareTag("FourTileTrigger"))
+            else if (spawnPoint.CompareTag("TrapPlatform"))
             {
-                if(platform.GetComponent<FourTile>() == null)
-                {
-                    FourTile trapComponent = platform.AddComponent<FourTile>();
-                    trapComponent.playerLayer = LayerMask.GetMask("Player");
-                }
+                int randomIndex = Random.Range(0, trapPrefabs.Length);
+                GameObject trapInstance = Instantiate(trapPrefabs[randomIndex], spawnPoint.position, spawnPoint.rotation);
+                trapInstance.transform.SetParent(spawnPoint);
+                currentTraps.Add(trapInstance);
 
-                currentTraps[i] = platform;
-                Debug.Log($"FourTile trap added to platform {platform.name}.");
+                Debug.Log($"Trap {trapPrefabs[randomIndex].name} added to platform at position {spawnPoint.position}");
+            }
+            else
+            {
+                Debug.LogWarning($"Platform at position {spawnPoint.position} has an unrecognized tag.");
             }
         }
     }
-
 }
