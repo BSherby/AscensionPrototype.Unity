@@ -35,7 +35,7 @@ public class TestMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("TrapPlatform"))
         {
             isGrounded = true;
         }
@@ -43,7 +43,7 @@ public class TestMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("TrapPlatform"))
         {
             isGrounded = false;
         }

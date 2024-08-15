@@ -1313,8 +1313,13 @@ MonoBehaviour:
   fourTileTriggerPrefab: {fileID: 203126809426814064, guid: b1a7b8dd626a82a45bba1b45041b768d, type: 3}
   fourTileSurroundPrefab: {fileID: 2562889984937381027, guid: 520a530616aae3b48a6f8e2d4e183727, type: 3}
   trapPrefabs:
-  - {fileID: 1859869290119813869, guid: fb865895074ea63498bbaf371f28c89b, type: 3}
+  - {fileID: 5271548407035741272, guid: 63c1dc2083a39624cb3c9fcd9d2b2c66, type: 3}
   - {fileID: 763920737609505877, guid: 60706c871c44af14caf15ea527c27634, type: 3}
+  - {fileID: 1859869290119813869, guid: fb865895074ea63498bbaf371f28c89b, type: 3}
+  trapPlatforms:
+  - {fileID: 800184325}
+  - {fileID: 256185559}
+  - {fileID: 1112281819}
   platformSpawnPoints:
   - {fileID: 199843330}
   - {fileID: 586294270}

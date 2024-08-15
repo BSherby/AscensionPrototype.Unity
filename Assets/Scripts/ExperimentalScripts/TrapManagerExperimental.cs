@@ -7,6 +7,7 @@ public class TrapManagerExperimental : MonoBehaviour
     public GameObject fourTileTriggerPrefab;
     public GameObject fourTileSurroundPrefab;
     public GameObject[] trapPrefabs;
+    public GameObject[] trapPlatforms;
 
     public Transform[] platformSpawnPoints;
 
@@ -14,16 +15,16 @@ public class TrapManagerExperimental : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("TrapManagerExperimental started. Initializing and assigning the traps.");
-        
+        Debug.Log("TrapManagerExperimental started. Initializing and assigning traps...");
+
         InstantiateAndAssignTraps();
     }
 
     public void ResetTraps()
     {
-        Debug.Log("Resetting the traps...");
+        Debug.Log("Resetting traps...");
 
-        foreach(var platform in currentTraps)
+        foreach (var platform in currentTraps)
         {
             Debug.Log($"Destroying platform or trap at position {platform.transform.position}");
             Destroy(platform);
@@ -36,29 +37,31 @@ public class TrapManagerExperimental : MonoBehaviour
     private void InstantiateAndAssignTraps()
     {
         Debug.Log("Instantiating and assigning traps to platforms...");
-        
+
+        for (int i = 0; i < trapPlatforms.Length; i++)
+        {
+            int randomIndex = Random.Range(0, trapPrefabs.Length);
+            GameObject trapInstance = Instantiate(trapPrefabs[randomIndex], trapPlatforms[i].transform);
+            trapInstance.transform.localPosition = Vector3.zero;
+            trapInstance.transform.localRotation = Quaternion.identity;
+            currentTraps.Add(trapInstance);
+
+            Debug.Log($"Trap {trapPrefabs[randomIndex].name} added to platform {trapPlatforms[i].name}");
+        }
+
         foreach (var spawnPoint in platformSpawnPoints)
         {
             if (spawnPoint.CompareTag("FourTileTrigger"))
             {
                 GameObject platform = Instantiate(fourTileTriggerPrefab, spawnPoint.position, spawnPoint.rotation);
                 currentTraps.Add(platform);
-                Debug.Log($"FourTile platform instantiated at {spawnPoint.position}");
+                Debug.Log($"FourTileTrigger platform instantiated at {spawnPoint.position}");
             }
             else if (spawnPoint.CompareTag("FourTileSurround"))
             {
                 GameObject platform = Instantiate(fourTileSurroundPrefab, spawnPoint.position, spawnPoint.rotation);
                 currentTraps.Add(platform);
                 Debug.Log($"FourTileSurround platform instantiated at {spawnPoint.position}");
-            }
-            else if (spawnPoint.CompareTag("TrapPlatform"))
-            {
-                int randomIndex = Random.Range(0, trapPrefabs.Length);
-                GameObject trapInstance = Instantiate(trapPrefabs[randomIndex], spawnPoint.position, spawnPoint.rotation);
-                trapInstance.transform.SetParent(spawnPoint);
-                currentTraps.Add(trapInstance);
-
-                Debug.Log($"Trap {trapPrefabs[randomIndex].name} added to platform at position {spawnPoint.position}");
             }
             else
             {
