@@ -9,6 +9,13 @@ public class GameManager : MonoBehaviour
     public Transform spawnPoint;
     public TrapManagerExperimental trapManager;
 
+    private TestMovement playerMovement;
+
+    private void Start()
+    {
+        playerMovement = player.GetComponent<TestMovement>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -30,5 +37,11 @@ public class GameManager : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+
+        if (playerMovement != null)
+        {
+            playerMovement.ResetMovementStats();
+        }
+        Debug.Log("Player respawned and movement stats have been reset.");
     }
 }

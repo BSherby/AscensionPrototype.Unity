@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShiftTrap : Trap
 {
     public float teleportDistance = 25f;
+    public float activationDelay = 0.5f;
     public LayerMask playerLayer;
 
     private Vector3 platformPosition;
@@ -21,13 +22,20 @@ public class ShiftTrap : Trap
     {
         if (IsPlayerLayer(collision.gameObject.layer))
         {
-            TeleportPlayer(collision.gameObject);
+            StartCoroutine(ActivateTrapWithDelay(collision.gameObject));
         }
     }
 
     private bool IsPlayerLayer(int layer)
     {
         return playerLayer == (playerLayer | (1 << layer));
+    }
+
+    private IEnumerator ActivateTrapWithDelay(GameObject player)
+    {
+        yield return new WaitForSeconds(activationDelay);
+
+        TeleportPlayer(player);
     }
 
     private void TeleportPlayer(GameObject player)

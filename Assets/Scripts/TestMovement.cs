@@ -5,8 +5,13 @@ using UnityEngine;
 public class TestMovement : MonoBehaviour
 {
 
-    public float speed = 5f;
-    public float jumpStrength =5f;
+    public float defaultSpeed = 5f;
+    public float defaultJumpStrenght =5f;
+
+    [HideInInspector]
+    public float speed;
+    [HideInInspector]
+    public float jumpStrength;
 
     private bool isGrounded;
     private Rigidbody rb;
@@ -15,6 +20,7 @@ public class TestMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ResetMovementStats();
     }
 
     // Update is called once per frame
@@ -47,5 +53,12 @@ public class TestMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void ResetMovementStats()
+    {
+        speed = defaultSpeed;
+        jumpStrength = defaultJumpStrenght;
+        Debug.Log("Player movement speed and jump strength reset to default values.");
     }
 }
