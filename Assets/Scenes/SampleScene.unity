@@ -1276,6 +1276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 362775208}
   - component: {fileID: 362775210}
+  - component: {fileID: 362775211}
   m_Layer: 0
   m_Name: Trap Manager
   m_TagString: Untagged
@@ -1317,6 +1318,45 @@ MonoBehaviour:
   - {fileID: 763920737609505877, guid: 60706c871c44af14caf15ea527c27634, type: 3}
   - {fileID: 1859869290119813869, guid: fb865895074ea63498bbaf371f28c89b, type: 3}
   - {fileID: 976027787738735013, guid: ea5344833e760bd4c90ca6af0d49e806, type: 3}
+  - {fileID: 3033616700726913093, guid: 1ad7b2059b512e44b8972aa3d5fe3773, type: 3}
+  - {fileID: 6891475355705261770, guid: 2160adc652f7568408abe5046aade93a, type: 3}
+  trapPlatforms:
+  - {fileID: 800184325}
+  - {fileID: 256185559}
+  - {fileID: 1112281819}
+  - {fileID: 552401982}
+  - {fileID: 1433928436}
+  platformSpawnPoints:
+  - {fileID: 199843330}
+  - {fileID: 586294270}
+  - {fileID: 822301237}
+  - {fileID: 1230000810}
+  - {fileID: 1881507746}
+  - {fileID: 2018338285}
+  - {fileID: 16718470}
+  - {fileID: 531943196}
+  - {fileID: 1581962586}
+--- !u!114 &362775211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362775206}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7e4e688c4d3d54e9b7c18581b8c2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fourTileTriggerPrefab: {fileID: 203126809426814064, guid: b1a7b8dd626a82a45bba1b45041b768d, type: 3}
+  fourTileSurroundPrefab: {fileID: 2562889984937381027, guid: 520a530616aae3b48a6f8e2d4e183727, type: 3}
+  trapPrefabs:
+  - {fileID: 763920737609505877, guid: 60706c871c44af14caf15ea527c27634, type: 3}
+  - {fileID: 1859869290119813869, guid: fb865895074ea63498bbaf371f28c89b, type: 3}
+  - {fileID: 5271548407035741272, guid: 63c1dc2083a39624cb3c9fcd9d2b2c66, type: 3}
+  - {fileID: 976027787738735013, guid: ea5344833e760bd4c90ca6af0d49e806, type: 3}
+  - {fileID: 3033616700726913093, guid: 1ad7b2059b512e44b8972aa3d5fe3773, type: 3}
+  trapWeights: 0600000004000000040000000200000004000000
   trapPlatforms:
   - {fileID: 800184325}
   - {fileID: 256185559}
@@ -3886,7 +3926,7 @@ Transform:
   m_GameObject: {fileID: 1445892535}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.382, y: 1.12, z: -0.98}
+  m_LocalPosition: {x: 2.97, y: 1.12, z: -0.98}
   m_LocalScale: {x: 32, y: 0.02, z: 32}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4232,7 +4272,7 @@ Transform:
   m_GameObject: {fileID: 1602045195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.382, y: -1.92, z: -0.98}
+  m_LocalPosition: {x: 2.97, y: -1.92, z: -0.98}
   m_LocalScale: {x: 32, y: 0.02, z: 32}
   m_ConstrainProportionsScale: 0
   m_Children: []
