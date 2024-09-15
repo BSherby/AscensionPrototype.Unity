@@ -8,6 +8,16 @@ public class SoulBindTrap : Trap
     private TestMovement playerMovement; //Reference to the movement script
     private bool effectActive = false;
 
+    public override void ActivateTrap()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeactivateTrap()
+    {
+        base.DeactivateTrap();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (IsPlayerLayer(collision.gameObject.layer) && !effectActive)

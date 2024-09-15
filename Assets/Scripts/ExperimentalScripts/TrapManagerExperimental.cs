@@ -46,6 +46,12 @@ public class TrapManagerExperimental : MonoBehaviour
             trapInstance.transform.localRotation = Quaternion.identity;
             currentTraps.Add(trapInstance);
 
+            Trap trapComponent = trapInstance.GetComponent<Trap>();
+            if (trapComponent != null)
+            {
+                trapComponent.ActivateTrap();
+            }
+
             Debug.Log($"Trap {trapPrefabs[randomIndex].name} added to platform {trapPlatforms[i].name}");
         }
 

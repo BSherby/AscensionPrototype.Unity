@@ -14,6 +14,16 @@ public class VineGrabTrap : Trap
     private int requiredPresses;  //Amount of presses needed to free the player
     private int currentPresses = 0;  //Counter for the amount pressed currently
 
+    public override void ActivateTrap()
+    {
+        Debug.Log("VineGrabTrap Activated");
+    }
+
+    public override void DeactivateTrap()
+    {
+        Debug.Log("VineGrabTrap Deactivated");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (IsPlayerLayer(collision.gameObject.layer) && !isFrozen && !isOnCoolDown)

@@ -18,6 +18,16 @@ public class ShiftTrap : Trap
         platformHeight = platformPosition.y;
     }
 
+    public override void ActivateTrap()
+    {
+        Debug.Log("ShiftTrap Activated");
+    }
+
+    public override void DeactivateTrap()
+    {
+        Debug.Log("ShiftTrap Deactivated");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (IsPlayerLayer(collision.gameObject.layer))

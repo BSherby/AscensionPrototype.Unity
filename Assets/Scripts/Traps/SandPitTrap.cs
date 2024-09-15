@@ -10,6 +10,16 @@ public class SandPitTrap : Trap
     private TestMovement playerMovement;
     private bool isActivated = false;
 
+    public override void ActivateTrap()
+    {
+        Debug.Log("SandPitTrap Activated");
+    }
+
+    public override void DeactivateTrap()
+    {
+        Debug.Log("SandPitTrap Deactivated");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (IsPlayerLayer(collision.gameObject.layer) && !isActivated)
