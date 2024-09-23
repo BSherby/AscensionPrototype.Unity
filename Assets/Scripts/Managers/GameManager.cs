@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,12 +9,12 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Transform spawnPoint;
     public TrapManagerExperimental trapManager; //name 'TrapManagerEperimental' will need to be changed when scripts are changed.
-    public SmoothCameraFollow cameraFollow;
+    public CinemachineVirtualCamera virtualCamera;
 
     private GameObject currentPlayer;
 
     private void Start()
-    {
+    {        
         RespawnPlayer();
     }
 
@@ -36,11 +37,12 @@ public class GameManager : MonoBehaviour
 
         currentPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        if (cameraFollow != null)
+        if(virtualCamera != null)
         {
-            cameraFollow.SetTarget(currentPlayer.transform);
+            virtualCamera.Follow = currentPlayer.transform;
+            virtualCamera.LookAt = currentPlayer.transform;
         }
 
-        Debug.Log("Player has been respawned.");
+        Debug.Log("Player has been respawned");
     }
 }

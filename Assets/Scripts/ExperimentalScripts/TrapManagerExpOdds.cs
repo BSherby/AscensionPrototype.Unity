@@ -7,7 +7,7 @@ public class TrapManagerExpOdds : MonoBehaviour
     public GameObject fourTileTriggerPrefab;
     public GameObject fourTileSurroundPrefab;
     public GameObject[] trapPrefabs;
-    public int[] trapWeights = new int[] {6, 4, 4, 2, 4}; //Corresonds with the order set up in the inspector.
+    public int[] trapWeights = new int[] {6,4}; //Corresonds with the order set up in the inspector.
     public GameObject[] trapPlatforms;
     public Transform[] platformSpawnPoints;
 
