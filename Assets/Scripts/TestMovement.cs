@@ -12,10 +12,9 @@ public class TestMovement : MonoBehaviour
 
     private bool isGrounded;
     private Rigidbody rb;
-
-    //public float turnSmoothTime = 0.1f;
-
     private Transform cam;
+
+    public float rotationSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,16 +28,39 @@ public class TestMovement : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
+        HandleJump();
+    }
+
+    private void HandleMovement()
+    {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = cam.forward * moveVertical + cam.right * moveHorizontal;
+        if (cam != null)
+        {
+            Vector3 movement = cam.forward * moveVertical + cam.right * moveHorizontal;
 
-        movement.y = 0;
+            movement.y = 0;
 
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
+            if (movement.magnitude > 1)
+            {
+                movement.Normalize();
+            }
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+            transform.Translate(movement * speed * Time.deltaTime, Space.World);
+
+            if (movement != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
+        }
+    }
+
+    private void HandleJump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }

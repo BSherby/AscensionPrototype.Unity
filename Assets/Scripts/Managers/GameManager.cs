@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Transform spawnPoint;
     public TrapManagerExperimental trapManager; //name 'TrapManagerEperimental' will need to be changed when scripts are changed.
-    public CinemachineVirtualCamera virtualCamera;
+    public ThirdPersonCamera cameraScript;
 
     private GameObject currentPlayer;
 
     private void Start()
-    {        
+    {
         RespawnPlayer();
     }
 
@@ -37,12 +37,9 @@ public class GameManager : MonoBehaviour
 
         currentPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        if(virtualCamera != null)
+        if (cameraScript != null)
         {
-            virtualCamera.Follow = currentPlayer.transform;
-            virtualCamera.LookAt = currentPlayer.transform;
+            cameraScript.AssignPlayer(currentPlayer.transform);
         }
-
-        Debug.Log("Player has been respawned");
     }
 }
